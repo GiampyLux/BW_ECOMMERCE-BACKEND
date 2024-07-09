@@ -25,10 +25,10 @@ namespace BW_ECOMMERCE.Models
         // queste entitÃ ci permetto di accedere direttamente agli oggetti utente e prodotto associati senza usare nuove query
 
         [Required]
-        public Utente Utente { get; set; }
+        public Utente? Utente { get; set; }
 
         [Required]
-        public Prodotto Prodotto { get; set; }
+        public Prodotto? Prodotto { get; set; }
 
     }
 }
