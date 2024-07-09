@@ -1,3 +1,5 @@
+using BW_ECOMMERCE.Services;
+
 namespace BW_ECOMMERCE
 {
     public class Program
@@ -8,6 +10,12 @@ namespace BW_ECOMMERCE
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services
+                .AddScoped<ICarrelloService, CarrelloService>()
+                .AddScoped<IProdottoService, ProdottoService>()
+                .AddScoped<IUtenteService, UtenteService>()
+                ;
 
             var app = builder.Build();
 
