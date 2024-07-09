@@ -52,7 +52,7 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = "SELECT * FROM Carrelli WHERE IdCarrello = @Id";
+                string query = "SELECT * FROM Carrelli WHERE IdUtenteFK = @Id AND Presente = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
@@ -127,6 +127,49 @@ namespace BW_ECOMMERCE.Services
                 }
             }
         }
+
+        public void CompraCarrello(Carrello carrello)
+        {
+            using (IDbConnection conn = _context.CreateConnection())
+            {
+                string query = @"UPDATE Carrelli
+                                 SET Confermato = 1,
+                                     Presente = 0,
+                                 WHERE IdCarrello = @IdCarrello";
+
+                using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
+                {
+                    cmd.Parameters.AddWithValue("@Confermato", carrello.Confermato);
+                    cmd.Parameters.AddWithValue("@Presente", carrello.Presente);
+                    
+                    cmd.Parameters.AddWithValue("@IdCarrello", carrello.IdCarrello);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ToglidaCarrello(Carrello carrello)
+        {
+            using (IDbConnection conn = _context.CreateConnection())
+            {
+                string query = @"UPDATE Carrelli
+                                 SET Presente = 0,
+                                 WHERE IdCarrello = @IdCarrello";
+
+                using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
+                {
+                    cmd.Parameters.AddWithValue("@Presente", carrello.Presente);
+
+                    cmd.Parameters.AddWithValue("@IdCarrello", carrello.IdCarrello);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public void DeleteCarrello(int id)
         {

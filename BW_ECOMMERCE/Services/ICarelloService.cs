@@ -9,5 +9,7 @@ namespace BW_ECOMMERCE.Services
         void InsertCarrello(Carrello carrello);
         void UpdateCarrello(Carrello carrello);
         void DeleteCarrello(int id);
+        void CompraCarrello(Carrello carrello);
+        void ToglidaCarrello(Carrello carrello);
     }
 }
