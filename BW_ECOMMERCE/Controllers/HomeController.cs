@@ -2,6 +2,8 @@ using BW_ECOMMERCE.Models;
 using BW_ECOMMERCE.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace BW_ECOMMERCE.Controllers
 {
@@ -19,7 +21,7 @@ namespace BW_ECOMMERCE.Controllers
             _prodottoService = prodottoService;
             _utenteService = utenteService;
             _carrelloService = carrelloService;
-            _fileService = fileService; // Inietta il servizio per gestire i file
+            _fileService = fileService; // Inject the file management service
         }
 
         public IActionResult Index()
