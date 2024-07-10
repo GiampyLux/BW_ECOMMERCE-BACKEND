@@ -2,6 +2,8 @@ using BW_ECOMMERCE.Models;
 using BW_ECOMMERCE.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace BW_ECOMMERCE.Controllers
 {
@@ -19,7 +21,7 @@ namespace BW_ECOMMERCE.Controllers
             _prodottoService = prodottoService;
             _utenteService = utenteService;
             _carrelloService = carrelloService;
-            _fileService = fileService; // Inietta il servizio per gestire i file
+            _fileService = fileService; // Inject the file management service
         }
 
         public IActionResult Index()
@@ -68,6 +70,35 @@ namespace BW_ECOMMERCE.Controllers
         {
             _prodottoService.DeleteProdotto(id);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Carrello()
+        {
+            var carrelli = _carrelloService.GetCarrelli();
+            return View(carrelli);
+        }
+
+        [HttpPost]
+        public IActionResult AggiungiAlCarrello(int prodottoId, int quantita)
+        {
+            var utenteId = 1; // Simulate logged-in user ID; replace with actual user management logic
+            var carrello = new Carrello
+            {
+                IdUtenteFK = utenteId,
+                IdProdottoFK = prodottoId,
+                Qnty = quantita,
+                Confermato = false,
+                Presente = true
+            };
+            _carrelloService.InsertCarrello(carrello);
+            return RedirectToAction(nameof(Carrello));
+        }
+
+        [HttpPost]
+        public IActionResult RimuoviDalCarrello(int id)
+        {
+            _carrelloService.ToglidaCarrello(new Carrello { IdCarrello = id });
+            return RedirectToAction(nameof(Carrello));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
