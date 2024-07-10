@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BW_ECOMMERCE.Models.Carrello>
+
+@{
+    ViewData["Title"] = "Carrello";
+}
+
+<h1>Carrello</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Id Utente</th>
+            <th>Id Prodotto</th>
+            <th>Confermato</th>
+            <th>Presente</th>
+            <th>Quantità</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdCarrello</td>
+                <td>@item.IdUtenteFK</td>
+                <td>@item.IdProdottoFK</td>
+                <td>@item.Confermato</td>
+                <td>@item.Presente</td>
+                <td>@item.Qnty</td>
+                <td>
+                    <form asp-action="RimuoviDalCarrello" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.IdCarrello" />
+                        <input type="submit" value="Rimuovi" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Continua lo shopping</a>
