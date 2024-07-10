@@ -84,8 +84,11 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = @"INSERT INTO Carrelli (IdUtenteFK, IdProdottoFK, Confermato, Presente, Qnty)
-                                 VALUES (@IdUtenteFK, @IdProdottoFK, @Confermato, @Presente, @Qnty)";
+
+                // string query = @"INSERT INTO Carrelli (IdUtenteFK, IdProdottoFK, Confermato, Presente, Qnty)
+                //                                 VALUES (@IdUtenteFK, @IdProdottoFK, @Confermato, @Presente, @Qnty)";
+
+                string query = @"EXEC [dbo].[AddOrUpdateCarrello] @IdUtente = , @IdProdotto = 1, @Qnty = @Qnty;";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
@@ -100,6 +103,50 @@ namespace BW_ECOMMERCE.Services
                 }
             }
         }
+
+        /*public void AumentaCarrello(Carrello carrello)
+        {
+            using (IDbConnection conn = _context.CreateConnection())
+            {
+
+                string query = @"UPDATE Carrelli
+                                 SET Qnty = @Qnty,
+                                 WHERE IdCarrello = @IdCarrello AND Presente = 1";
+
+                using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
+                {
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", carrello.IdUtenteFK);
+                    cmd.Parameters.AddWithValue("@IdProdottoFK", carrello.IdProdottoFK);
+                    cmd.Parameters.AddWithValue("@Confermato", carrello.Confermato);
+                    cmd.Parameters.AddWithValue("@Presente", carrello.Presente);
+                    cmd.Parameters.AddWithValue("@Qnty", carrello.Qnty);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ControllaCarrello(Carrello carrello)
+        {
+            using (IDbConnection conn = _context.CreateConnection())
+            {
+
+                string query = @"SELECT * FROM Carrelli WHERE IdProdottoFK = @IdProdottoFK AND IdUtenteFK = @IdUtenteFK AND Presente = 1";
+
+                using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
+                {
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", carrello.IdUtenteFK);
+                    cmd.Parameters.AddWithValue("@IdProdottoFK", carrello.IdProdottoFK);
+                    cmd.Parameters.AddWithValue("@Confermato", carrello.Confermato);
+                    cmd.Parameters.AddWithValue("@Presente", carrello.Presente);
+                    cmd.Parameters.AddWithValue("@Qnty", carrello.Qnty);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }*/
 
         public void UpdateCarrello(Carrello carrello)
         {
