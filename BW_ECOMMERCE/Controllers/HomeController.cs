@@ -25,9 +25,10 @@ namespace BW_ECOMMERCE.Controllers
             return View(_prodottoService.GetProdotti().OrderByDescending(a => a.DataIns));
         }
 
-        public IActionResult Privacy()
+        public IActionResult Details(int id)
         {
-            return View();
+            var prodotto = _prodottoService.GetProdottoById(id);
+            return View(prodotto);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
