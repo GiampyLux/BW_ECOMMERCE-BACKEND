@@ -1,8 +1,8 @@
-﻿@{
+﻿@model IEnumerable<BW_ECOMMERCE.Models.Prodotto>
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-@model IEnumerable<Prodotto>
 
 <div class="container">
     <div class="row">
@@ -11,27 +11,34 @@
             {
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="..." class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">@product.NomeProdotto</h5>
-                            <p class="card-text">@product.DescBreve</p>
-                            <p class="card-text">@product.Prezzo</p>
-                            <p class="card-text">Quantità disponibile: @product.Quantity</p>
+                        <div class="col-md-4">
+                            @if (!string.IsNullOrEmpty(product.ImgProdotto))
+                            {
+                                <img src="data:image;base64,@product.ImgProdotto" class="img-fluid rounded-start" alt="Immagine Prodotto">
+                            }
+                            else
+                            {
+                                <img src="/img/placeholder.jpg" class="img-fluid rounded-start" alt="Immagine non disponibile">
+                                
+                            }
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@product.NomeProdotto</h5>
+                                <p class="card-text">@product.DescBreve</p>
+                                <p class="card-text">@product.Prezzo</p>
+                                <p class="card-text">Quantità disponibile: @product.Quantity</p>
                                 <form action="/action_page.php">
                                     <label for="quantity">Seleziona la quantità:</label>
                                     <input type="number" id="quantity" name="quantity" min="1">
-                                    
                                 </form>
-                            <p class="card-text"><small class="text-body-secondary">Data Inserimento: @product.DataIns</small></p>
-                            <button class="btn btn-primary"> Aggiungi al carrello</button>
-                            <a asp-action="Dettagli" asp-route-id="@product.IdProdotto" class="btn btn-secondary">Dettagli Prodotto</a>
+                                <p class="card-text"><small class="text-body-secondary">Data Inserimento: @product.DataIns.ToString("dd/MM/yyyy")</small></p>
+                                <button class="btn btn-primary"> Aggiungi al carrello</button>
+                                <a asp-action="Dettagli" asp-route-id="@product.IdProdotto" class="btn btn-secondary">Dettagli Prodotto</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             }
         </div>
     </div>

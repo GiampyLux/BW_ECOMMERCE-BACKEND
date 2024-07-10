@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Crea">
+        <form asp-action="Crea" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NomeProdotto" class="control-label"></label>
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImgProdotto" class="control-label"></label>
-                <input asp-for="ImgProdotto" class="form-control" />
+                <input type="file" name="file" class="form-control" />
                 <span asp-validation-for="ImgProdotto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,5 +64,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

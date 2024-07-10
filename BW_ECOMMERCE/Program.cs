@@ -16,6 +16,7 @@ namespace BW_ECOMMERCE
                 .AddScoped<ICarrelloService, CarrelloService>()
                 .AddScoped<IProdottoService, ProdottoService>()
                 .AddScoped<IUtenteService, UtenteService>()
+                .AddScoped<IFileService,FileService>()
                 .AddScoped<DatabaseContext>()
                 ;
 

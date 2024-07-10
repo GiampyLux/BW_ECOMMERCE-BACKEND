@@ -1,6 +1,8 @@
 using BW_ECOMMERCE.Models;
 using BW_ECOMMERCE.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace BW_ECOMMERCE.Controllers
@@ -11,13 +13,15 @@ namespace BW_ECOMMERCE.Controllers
         private readonly IProdottoService _prodottoService;
         private readonly IUtenteService _utenteService;
         private readonly ICarrelloService _carrelloService;
+        private readonly IFileService _fileService;
 
-        public HomeController(ILogger<HomeController> logger, IProdottoService prodottoService, IUtenteService utenteService, ICarrelloService carrelloService)
+        public HomeController(ILogger<HomeController> logger, IProdottoService prodottoService, IUtenteService utenteService, ICarrelloService carrelloService, IFileService fileService)
         {
             _logger = logger;
-            _utenteService = utenteService;
             _prodottoService = prodottoService;
+            _utenteService = utenteService;
             _carrelloService = carrelloService;
+            _fileService = fileService; // Inietta il servizio per gestire i file
         }
 
         public IActionResult Index()
@@ -37,10 +41,28 @@ namespace BW_ECOMMERCE.Controllers
         }
 
         [HttpPost]
-        public IActionResult Crea(Prodotto prodotto)
+        public IActionResult Crea(Prodotto prodotto, IFormFile file)
         {
-            _prodottoService.InsertProdotto(prodotto);
-            return RedirectToAction(nameof(Index));
+            if (file == null || file.Length == 0)
+            {
+                ModelState.AddModelError("ImgProdotto", "È necessario caricare un'immagine.");
+                return View(prodotto);
+            }
+
+            try
+            {
+                var base64String = _fileService.ConvertToBase64(file);
+                prodotto.ImgProdotto = base64String;
+
+                _prodottoService.InsertProdotto(prodotto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Errore durante la creazione del prodotto: {ex.Message}");
+                ModelState.AddModelError("", "Si è verificato un errore durante la creazione del prodotto.");
+                return View(prodotto);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
