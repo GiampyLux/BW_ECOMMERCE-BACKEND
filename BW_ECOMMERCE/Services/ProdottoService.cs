@@ -34,7 +34,7 @@ namespace BW_ECOMMERCE.Services
                                 IdProdotto = reader.GetInt32(0),
                                 NomeProdotto = reader.GetString(1),
                                 Prezzo = reader.GetDecimal(2),
-                                Desc = reader.GetString(3),
+                                DescBreve = reader.GetString(3),
                                 Descrizione = reader.GetString(4),
                                 ImgProdotto = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 DataIns = reader.GetDateTime(6),
@@ -71,7 +71,7 @@ namespace BW_ECOMMERCE.Services
                                 IdProdotto = reader.GetInt32(0),
                                 NomeProdotto = reader.GetString(1),
                                 Prezzo = reader.GetDecimal(2),
-                                Desc = reader.GetString(3),
+                                DescBreve = reader.GetString(3),
                                 Descrizione = reader.GetString(4),
                                 ImgProdotto = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 DataIns = reader.GetDateTime(6),
@@ -90,14 +90,14 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = @"INSERT INTO Prodotti (NomeProdotto, Prezzo, Desc, Descrizione, ImgProdotto, DataIns, Quantity, CodProd)
-                                 VALUES (@NomeProdotto, @Prezzo, @Desc, @Descrizione, @ImgProdotto, @DataIns, @Quantity, @CodProd)";
+                string query = @"INSERT INTO Prodotti (NomeProdotto, Prezzo, DescBreve, Descrizione, ImgProdotto, DataIns, Quantity, CodProd)
+                                 VALUES (@NomeProdotto, @Prezzo, @DescBreve, @Descrizione, @ImgProdotto, @DataIns, @Quantity, @CodProd)";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
                     cmd.Parameters.AddWithValue("@NomeProdotto", prodotto.NomeProdotto);
                     cmd.Parameters.AddWithValue("@Prezzo", prodotto.Prezzo);
-                    cmd.Parameters.AddWithValue("@Desc", prodotto.Desc);
+                    cmd.Parameters.AddWithValue("@DescBreve", prodotto.DescBreve);
                     cmd.Parameters.AddWithValue("@Descrizione", prodotto.Descrizione);
                     cmd.Parameters.AddWithValue("@ImgProdotto", (object)prodotto.ImgProdotto ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@DataIns", prodotto.DataIns);
@@ -117,7 +117,7 @@ namespace BW_ECOMMERCE.Services
                 string query = @"UPDATE Prodotti
                                  SET NomeProdotto = @NomeProdotto,
                                      Prezzo = @Prezzo,
-                                     Desc = @Desc,
+                                     DescBreve = @DescBreve,
                                      Descrizione = @Descrizione,
                                      ImgProdotto = @ImgProdotto,
                                      DataIns = @DataIns,
@@ -129,7 +129,7 @@ namespace BW_ECOMMERCE.Services
                 {
                     cmd.Parameters.AddWithValue("@NomeProdotto", prodotto.NomeProdotto);
                     cmd.Parameters.AddWithValue("@Prezzo", prodotto.Prezzo);
-                    cmd.Parameters.AddWithValue("@Desc", prodotto.Desc);
+                    cmd.Parameters.AddWithValue("@DescBreve", prodotto.DescBreve);
                     cmd.Parameters.AddWithValue("@Descrizione", prodotto.Descrizione);
                     cmd.Parameters.AddWithValue("@ImgProdotto", (object)prodotto.ImgProdotto ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@DataIns", prodotto.DataIns);

@@ -17,7 +17,7 @@ namespace BW_ECOMMERCE.Models
 
         [Required]
         [StringLength(50)]
-        public string Desc { get; set; } // lunghezza stinga
+        public string DescBreve { get; set; } // lunghezza stinga
 
         [Required]
         public string Descrizione { get; set; } // non necessario required
