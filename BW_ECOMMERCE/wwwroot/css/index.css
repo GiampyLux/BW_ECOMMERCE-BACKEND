@@ -1,7 +1,37 @@
 ﻿#start {
-    background-image: url(https://media.self.com/photos/580a7c80567317aa3dc0d7d2/4:3/w_1920,c_limit/registered-dietitians-routine.jpg)
+    background-image: url(https://media.self.com/photos/580a7c80567317aa3dc0d7d2/4:3/w_1920,c_limit/registered-dietitians-routine.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .myGreen {
-    color: #81C408
+    color: #81C408;
+}
+.myBgGreen {
+    background-color: #81C408;
+}
+.myOrange {
+    color: #FFB524;
+}
+
+.myGray {
+    color: #747D88;
+}
+
+.myBorder {
+    border: 1px solid #D5D8DC;
+}
+
+.myBgOrange {
+    background-color: #FFB524;
+}
+.myBgGray {
+    background-color: #F4F6F8;
+}
+.myBg {
+    background-color: rgb(255, 255, 255, .9);
+    padding: 2em;
+    border-radius: 1.5em;
+    border: 4px solid #FFB524;
+    box-shadow: gray 1px 7px 9px;
 }
