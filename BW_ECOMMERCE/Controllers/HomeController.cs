@@ -31,6 +31,18 @@ namespace BW_ECOMMERCE.Controllers
             return View(prodotto);
         }
 
+        public IActionResult Crea()
+        {
+            return View(new Prodotto());
+        }
+
+        [HttpPost]
+        public IActionResult Crea(Prodotto prodotto)
+        {
+            _prodottoService.InsertProdotto(prodotto);
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
