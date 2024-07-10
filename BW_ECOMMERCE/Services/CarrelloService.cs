@@ -84,11 +84,9 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-
-                // string query = @"INSERT INTO Carrelli (IdUtenteFK, IdProdottoFK, Confermato, Presente, Qnty)
-                //                                 VALUES (@IdUtenteFK, @IdProdottoFK, @Confermato, @Presente, @Qnty)";
-
-                string query = @"EXEC [dbo].[AddOrUpdateCarrello] @IdUtente = , @IdProdotto = 1, @Qnty = @Qnty;";
+                string query = @"EXEC [dbo].[AddOrUpdateCarrello] @IdUtente = @IdUtenteFK, 
+                               @IdProdotto = @IdProdottoFK, @Qnty = @Qnty, 
+                               @Confermato = @Confermato, @Presente = @Presente";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
