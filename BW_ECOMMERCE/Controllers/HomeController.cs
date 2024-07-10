@@ -70,6 +70,30 @@ namespace BW_ECOMMERCE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public IActionResult AddToCart(int productId, int quantity)
+        {
+            // Ottieni l'ID dell'utente (qui è un esempio, cambia in base alla tua implementazione)
+            int userId = 1; // Sostituisci con l'ID dell'utente corrente
+
+            // Crea un nuovo oggetto Carrello
+            Carrello carrello = new Carrello
+            {
+                IdUtenteFK = userId,
+                IdProdottoFK = productId,
+                Confermato = false,
+                Presente = true,
+                Qnty = quantity
+            };
+
+            // Inserisci il carrello usando il servizio
+            _carrelloService.InsertCarrello(carrello);
+
+            // Aggiungi un messaggio di successo e redirigi alla pagina precedente o alla home
+            TempData["Success"] = "Prodotto aggiunto al carrello con successo";
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
