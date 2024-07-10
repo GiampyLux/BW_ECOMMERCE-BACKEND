@@ -4,7 +4,7 @@ namespace BW_ECOMMERCE.Models
 {
     public class Prodotto
     {
-        
+
         [Required]
         public int IdProdotto { get; set; }
 
@@ -12,10 +12,11 @@ namespace BW_ECOMMERCE.Models
         [StringLength(50)]
         public string NomeProdotto { get; set; } // lunghezza stringa
 
-        [Required,StringLength(50)]
+        [Required]
         public decimal Prezzo { get; set; }
 
-        [Required,StringLength(50)]
+        [Required]
+        [StringLength(50)]
         public string Desc { get; set; } // lunghezza stinga
 
         [Required]
@@ -24,7 +25,7 @@ namespace BW_ECOMMERCE.Models
         public string ImgProdotto { get; set; } // capire se vogliamo fare il base64 o inserire direttamente url
         [Required]
         public DateTime DataIns { get; set; }// controllare formato della data 
-       
+
         [Required]
         public int Quantity { get; set; }
 
