@@ -92,54 +92,121 @@
 
 <div class="container">
     <div class="row justify-content-center mt-5">
-        <h1>I Nostri Prodotti</h1>
+        <div class="d-flex align-items-center justify-content-between">
+            <h1 class="myOlive">I Nostri Prodotti</h1>
+            <div>
+                <button class="myBtn ">Tutti I Prodotti</button>
+                <button class="myBtn ">Frutta</button>
+                <button class="myBtn ">Verdura</button>
+                <button class="myBtn ">Altro</button>
+
+            </div>
+
+        </div>
         <div class="col-12">
             <div class="row mt-4 justify-content-around">
                 @foreach (var product in Model)
                 {
-                    <div class="card col-5 mx-1 mb-3 shadow" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4">
+                    <div class="col-3">
+                        <div class="card mb-5 myCard">
+                            
                                 @if (!string.IsNullOrEmpty(product.ImgProdotto))
                                 {
-                                    <img src="data:image;base64,@product.ImgProdotto" class="img-fluid rounded-start" alt="Immagine Prodotto">
+                                    <img src="data:image;base64,@product.ImgProdotto" class="img-fluid rounded-top " alt="Immagine Prodotto">
                                 }
                                 else
                                 {
-                                    <img src="/img/placeholder.jpg" class="img-fluid rounded-start" alt="Immagine non disponibile">
+                                    <img src="/img/placeholder.jpg" class="img-fluid rounded-top " alt="Immagine non disponibile">
                                 }
+                            <div class="fab">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z" />
+                                </svg>
                             </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title m-0">@product.NomeProdotto</h5>
-                                    </div>
-                                    <p class="card-text">@product.DescBreve</p>
-                                    <p class="card-text">€@product.Prezzo</p>
-                                    <p class="card-text">Quantità disponibile: @product.Quantity</p>
+                            
+                                <div class="card-body text-center">
+                                    <h3 class="text-center myOlive">@product.NomeProdotto</h3>
+                                    <h5 class="text-center myOlive mb-3">@product.DescBreve</h5>
                                     <form asp-action="AddToCart" method="post">
                                         <input type="hidden" name="productId" value="@product.IdProdotto" />
-                                        <label for="quantity_@product.IdProdotto">Seleziona la quantità:</label>
-                                        <input type="number" id="quantity_@product.IdProdotto" name="quantity" min="1" value="1" />
-                                        <button type="submit" class="btn btn-primary mt-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
-                                                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0" />
-                                            </svg>
-                                        </button>
+                                        <label for="quantity_@product.IdProdotto" class="small myOlive">Quantità:</label>
+                                        <div class=" align-items-center mt-1">
+                                            <input type="number" id="quantity_@product.IdProdotto" name="quantity" min="1" value="1" class="qnt myOlive" />
+                                            <div class="d-flex justify-content-center align-items-center mt-3">
+                                                <p class="m-0 fw-bold myOlive myBtn">€@product.Prezzo</p>
+                                                <button type="submit" class="myBtnCart fw-bolder ms-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+                                                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0" />
+                                                    </svg>
+                                                    Aggiungi
+                                                </button>
+                                            </div>
+                                        </div>
                                     </form>
-                                    <p class="card-text"><small class="text-body-secondary">Data Inserimento: @product.DataIns.ToString("dd/MM/yyyy")</small></p>
-                                    <div class="d-flex">
-                                        <a asp-action="Dettagli" asp-route-id="@product.IdProdotto" class="btn btn-secondary">Dettagli</a>
+                                    <div class="d-flex justify-content-center mt-3">
+                          
+
+                                        <a asp-action="Dettagli" asp-route-id="@product.IdProdotto" class="myBtnDetail">
+                                                Dettagli</a>
+                                        
                                         <form asp-action="Delete" method="post">
                                             <input type="hidden" name="id" value="@product.IdProdotto" />
-                                            <button type="submit" class="btn btn-danger ms-2">Elimina</button>
+
+
+                                        <button type="submit" class="myBtnDelete ms-3">
+                                             Elimina
+                                        </button>
+                                            
                                         </form>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" id="frutta">
+    <div class="row myBgOrange justify-content-center align-items-center py-5">
+        <div class="col-4">
+            <h1 class="text-white fw-bold">Frutta Fresca Esotica</h1>
+            <h1 class="myOlive">nel Nostro Store :)</h1>
+            <p class="myOlive">Scopri la nostra selezione di frutta fresca esotica proveniente dai migliori produttori di tutto il mondo. Ogni frutto è scelto con cura per garantirti la massima qualità e freschezza.</p>
+            <button class="myBtnCart">Compra Ora</button>
+        </div>
+        <div class="col-4">
+            <img src="https://themewagon.github.io/fruitables/img/baner-1.png" class="img-fluid" alt="Immagine Prodotto">
+        </div>
+    </div>
+</div>
+<div class="container-fluid myBgGreen" id="work">
+    <h1 class="text-center">From A to Z</h1>
+    <div class="row justify-content-center mt-3 names">
+        <div class="col-2">
+            <div class="myBg" >
+                <h1 class="text-center">Alessandro Polioni</h1>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="myBg">
+                <h1 class="text-center">Andrea Ciraldo</h1>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="myBg">
+                <h1 class="text-center">Giampaolo Paladino</h1>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="myBg">
+                <h1 class="text-center">Morgan Grande</h1>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="myBg">
+                <h1 class="text-center">Nicolò Scivittaro</h1>
             </div>
         </div>
     </div>

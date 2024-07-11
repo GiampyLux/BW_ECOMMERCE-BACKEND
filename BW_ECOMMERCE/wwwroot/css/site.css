@@ -23,6 +23,26 @@ html {
   min-height: 100%;
 }
 
+nav a:hover {
+    color: #FFB524 !important;
+}
+
 body {
   margin-bottom: 60px;
+}
+
+.myGreen {
+    color: #81C408;
+}
+
+.myOlive {
+    color: #45595B;
+}
+
+.myOrange {
+    color: #FFB524;
+}
+
+#gusta {
+    transition: color 0.3s ease; /* Aggiungi la transizione qui */
 }
