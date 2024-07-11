@@ -74,14 +74,14 @@ namespace BW_ECOMMERCE.Controllers
 
         public IActionResult Carrello()
         {
-            var carrelli = _carrelloService.GetCarrelli().Where(c => c.Presente);
+            var carrelli = _carrelloService.GetCarrelloView();
             return View(carrelli);
         }
 
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity)
         {
-            int userId = 1; // Replace with actual user ID from your user management logic
+            int userId = 30; // Replace with actual user ID from your user management logic
 
             Carrello carrello = new Carrello
             {
@@ -101,7 +101,27 @@ namespace BW_ECOMMERCE.Controllers
         [HttpPost]
         public IActionResult RimuoviDalCarrello(int id)
         {
-            _carrelloService.DeleteCarrello(id);
+            _carrelloService.ToglidaCarrello(id);
+            return RedirectToAction(nameof(Carrello));
+        }
+
+        [HttpPost]
+
+        public IActionResult CompraSingolo(int id)
+        {
+            _carrelloService.CompraCarrello(id);
+            return RedirectToAction(nameof(Carrello));
+        }
+
+        [HttpPost]
+
+        public IActionResult CompraCarrello(int[]ids)
+        {
+            foreach (var id in ids)
+            {
+                _carrelloService.CompraCarrello(id);
+                
+            }
             return RedirectToAction(nameof(Carrello));
         }
 
