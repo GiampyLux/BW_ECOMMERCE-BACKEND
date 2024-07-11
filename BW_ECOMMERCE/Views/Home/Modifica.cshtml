@@ -1,0 +1,44 @@
+﻿@model BW_ECOMMERCE.Models.Prodotto
+
+@{
+    ViewData["Title"] = "Modifica Prodotto";
+}
+
+<h2>Modifica Prodotto</h2>
+
+<form asp-action="Modifica" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="NomeProdotto"></label>
+        <input asp-for="NomeProdotto" class="form-control" />
+        <span asp-validation-for="NomeProdotto" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Descrizione"></label>
+        <textarea asp-for="Descrizione" class="form-control"></textarea>
+        <span asp-validation-for="Descrizione" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Prezzo"></label>
+        <input asp-for="Prezzo" class="form-control" />
+        <span asp-validation-for="Prezzo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DataIns"></label>
+        <input asp-for="DataIns" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label>Immagine Prodotto</label>
+        <input type="file" name="file" class="form-control-file" />
+        <img src="data:image/png;base64,@Model.ImgProdotto" alt="Product Image" class="img-thumbnail mt-2" style="max-height: 200px;" />
+        <span asp-validation-for="ImgProdotto" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="IdProdotto" />
+    <button type="submit" class="btn btn-primary">Salva</button>
+    <a asp-action="Index" class="btn btn-secondary">Annulla</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
