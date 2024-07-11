@@ -62,7 +62,7 @@ namespace BW_ECOMMERCE.Services
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
-                    cmd.Parameters.AddWithValue("@IdUtenteFK", 1);
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", 10);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -96,7 +96,7 @@ namespace BW_ECOMMERCE.Services
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
-                    cmd.Parameters.AddWithValue("@IdUtenteFK", 2);
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", 10);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
