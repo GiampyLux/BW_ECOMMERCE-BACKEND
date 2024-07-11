@@ -21,7 +21,7 @@ namespace BW_ECOMMERCE.Controllers
             _prodottoService = prodottoService;
             _utenteService = utenteService;
             _carrelloService = carrelloService;
-            _fileService = fileService; // Inject the file management service
+            _fileService = fileService;
         }
 
         public IActionResult Index()
@@ -72,13 +72,17 @@ namespace BW_ECOMMERCE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Carrello()
+        {
+            var carrelli = _carrelloService.GetCarrelli().Where(c => c.Presente);
+            return View(carrelli);
+        }
+
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity)
         {
-            // Ottieni l'ID dell'utente (qui è un esempio, cambia in base alla tua implementazione)
-            int userId = 1; // Sostituisci con l'ID dell'utente corrente
+            int userId = 1; // Replace with actual user ID from your user management logic
 
-            // Crea un nuovo oggetto Carrello
             Carrello carrello = new Carrello
             {
                 IdUtenteFK = userId,
@@ -88,12 +92,17 @@ namespace BW_ECOMMERCE.Controllers
                 Qnty = quantity
             };
 
-            // Inserisci il carrello usando il servizio
             _carrelloService.InsertCarrello(carrello);
 
-            // Aggiungi un messaggio di successo e redirigi alla pagina precedente o alla home
             TempData["Success"] = "Prodotto aggiunto al carrello con successo";
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult RimuoviDalCarrello(int id)
+        {
+            _carrelloService.DeleteCarrello(id);
+            return RedirectToAction(nameof(Carrello));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
