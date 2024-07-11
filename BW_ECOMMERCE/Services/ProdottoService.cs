@@ -115,15 +115,13 @@ namespace BW_ECOMMERCE.Services
             using (IDbConnection conn = _context.CreateConnection())
             {
                 string query = @"UPDATE Prodotti
-                                 SET NomeProdotto = @NomeProdotto,
-                                     Prezzo = @Prezzo,
-                                     DescBreve = @DescBreve,
-                                     Descrizione = @Descrizione,
-                                     ImgProdotto = @ImgProdotto,
-                                     DataIns = @DataIns,
-                                     Quantity = @Quantity,
-                                     CodProd = @CodProd
-                                 WHERE IdProdotto = @IdProdotto";
+                         SET NomeProdotto = @NomeProdotto,
+                             Prezzo = @Prezzo,
+                             DescBreve = @DescBreve,
+                             Descrizione = @Descrizione,
+                             ImgProdotto = @ImgProdotto,
+                             Quantity = @Quantity
+                         WHERE IdProdotto = @IdProdotto";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
@@ -132,9 +130,7 @@ namespace BW_ECOMMERCE.Services
                     cmd.Parameters.AddWithValue("@DescBreve", prodotto.DescBreve);
                     cmd.Parameters.AddWithValue("@Descrizione", prodotto.Descrizione);
                     cmd.Parameters.AddWithValue("@ImgProdotto", (object)prodotto.ImgProdotto ?? DBNull.Value);
-                    cmd.Parameters.AddWithValue("@DataIns", prodotto.DataIns);
                     cmd.Parameters.AddWithValue("@Quantity", prodotto.Quantity);
-                    cmd.Parameters.AddWithValue("@CodProd", prodotto.CodProd);
                     cmd.Parameters.AddWithValue("@IdProdotto", prodotto.IdProdotto);
 
                     conn.Open();
@@ -142,6 +138,7 @@ namespace BW_ECOMMERCE.Services
                 }
             }
         }
+
 
         public void DeleteProdotto(int id)
         {

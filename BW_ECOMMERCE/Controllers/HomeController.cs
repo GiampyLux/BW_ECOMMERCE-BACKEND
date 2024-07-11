@@ -68,46 +68,22 @@ namespace BW_ECOMMERCE.Controllers
         public IActionResult Modifica(int id)
         {
             var prodotto = _prodottoService.GetProdottoById(id);
+
             if (prodotto == null)
             {
                 return NotFound();
             }
             return View(prodotto);
-        }
+            
+
+        } 
 
         [HttpPost]
-        public IActionResult Modifica(Prodotto prodotto, IFormFile file)
+        public IActionResult Modifica(Prodotto prodotto)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(prodotto);
-            }
-
-            try
-            {
-                if (file != null && file.Length > 0)
-                {
-                    var base64String = _fileService.ConvertToBase64(file);
-                    prodotto.ImgProdotto = base64String;
-                }
-                else
-                {
-                    var existingProduct = _prodottoService.GetProdottoById(prodotto.IdProdotto);
-                    if (existingProduct != null)
-                    {
-                        prodotto.ImgProdotto = existingProduct.ImgProdotto;
-                    }
-                }
-
-                _prodottoService.UpdateProdotto(prodotto);
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Errore durante la modifica del prodotto: {ex.Message}");
-                ModelState.AddModelError("", "Si è verificato un errore durante la modifica del prodotto.");
-                return View(prodotto);
-            }
+           
+            _prodottoService.UpdateProdotto(prodotto);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
