@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Linq;
-using Microsoft.Extensions.Logging;
 using BW_ECOMMERCE.Models;
 using BW_ECOMMERCE.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace BW_ECOMMERCE.Controllers
 {
@@ -148,12 +146,12 @@ namespace BW_ECOMMERCE.Controllers
 
         [HttpPost]
 
-        public IActionResult CompraCarrello(int[]ids)
+        public IActionResult CompraCarrello(int[] ids)
         {
             foreach (var id in ids)
             {
                 _carrelloService.CompraCarrello(id);
-                
+
             }
             return RedirectToAction(nameof(Carrello));
         }
