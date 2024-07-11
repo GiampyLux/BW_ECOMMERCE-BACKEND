@@ -1,9 +1,9 @@
-using BW_ECOMMERCE.Models;
-using BW_ECOMMERCE.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using BW_ECOMMERCE.Models;
+using BW_ECOMMERCE.Services;
 
 namespace BW_ECOMMERCE.Controllers
 {
@@ -65,6 +65,39 @@ namespace BW_ECOMMERCE.Controllers
             }
         }
 
+        public IActionResult Modifica(int id)
+        {
+            var prodotto = _prodottoService.GetProdottoById(id);
+
+            if (prodotto == null)
+            {
+                return NotFound();
+            }
+            return View(prodotto);
+        }
+
+        [HttpPost]
+        public IActionResult Modifica(Prodotto prodotto, IFormFile file)
+        {
+            try
+            {
+                if (file != null && file.Length > 0)
+                {
+                    var base64String = _fileService.ConvertToBase64(file);
+                    prodotto.ImgProdotto = base64String;
+                }
+
+                _prodottoService.UpdateProdotto(prodotto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Errore durante la modifica del prodotto: {ex.Message}");
+                ModelState.AddModelError("", "Si è verificato un errore durante la modifica del prodotto.");
+                return View(prodotto);
+            }
+        }
+
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -74,14 +107,14 @@ namespace BW_ECOMMERCE.Controllers
 
         public IActionResult Carrello()
         {
-            var carrelli = _carrelloService.GetCarrelli().Where(c => c.Presente);
+            var carrelli = _carrelloService.GetCarrelloView();
             return View(carrelli);
         }
 
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity)
         {
-            int userId = 1; // Replace with actual user ID from your user management logic
+            int userId = 30; // Replace with actual user ID from your user management logic
 
             Carrello carrello = new Carrello
             {
@@ -101,7 +134,27 @@ namespace BW_ECOMMERCE.Controllers
         [HttpPost]
         public IActionResult RimuoviDalCarrello(int id)
         {
-            _carrelloService.DeleteCarrello(id);
+            _carrelloService.ToglidaCarrello(id);
+            return RedirectToAction(nameof(Carrello));
+        }
+
+        [HttpPost]
+
+        public IActionResult CompraSingolo(int id)
+        {
+            _carrelloService.CompraCarrello(id);
+            return RedirectToAction(nameof(Carrello));
+        }
+
+        [HttpPost]
+
+        public IActionResult CompraCarrello(int[]ids)
+        {
+            foreach (var id in ids)
+            {
+                _carrelloService.CompraCarrello(id);
+                
+            }
             return RedirectToAction(nameof(Carrello));
         }
 
