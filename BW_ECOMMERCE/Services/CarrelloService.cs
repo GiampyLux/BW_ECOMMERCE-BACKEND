@@ -1,8 +1,6 @@
 ﻿using BW_ECOMMERCE.Models;
-using Humanizer;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace BW_ECOMMERCE.Services
 {
@@ -88,7 +86,7 @@ namespace BW_ECOMMERCE.Services
             return carrelli;
         }
 
-        public CarrelloView GetCarrelloById(int id)
+        /*public CarrelloView GetCarrelloById(int id)
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
@@ -111,7 +109,7 @@ namespace BW_ECOMMERCE.Services
                                 NomeProdotto = reader.GetString(1),
                                 Prezzo = reader.GetDecimal(2),
                                 Quatita = reader.GetInt32(3),
-                                
+
                             };
                         }
                     }
@@ -119,7 +117,7 @@ namespace BW_ECOMMERCE.Services
             }
 
             return null;
-        }
+        }*/
 
         public void InsertCarrello(Carrello carrello)
         {
