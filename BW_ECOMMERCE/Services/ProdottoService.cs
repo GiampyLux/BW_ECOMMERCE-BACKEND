@@ -19,7 +19,7 @@ namespace BW_ECOMMERCE.Services
 
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = "SELECT * FROM Prodotti";
+                string query = "SELECT * FROM Prodotti where Disponibile = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
@@ -55,7 +55,7 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = "SELECT * FROM Prodotti WHERE IdProdotto = @Id";
+                string query = "SELECT * FROM Prodotti WHERE IdProdotto = @Id and Disponibile = 1";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
@@ -144,7 +144,7 @@ namespace BW_ECOMMERCE.Services
         {
             using (IDbConnection conn = _context.CreateConnection())
             {
-                string query = "DELETE FROM Prodotti WHERE IdProdotto = @Id";
+                string query = "UPDATE Prodotti set Disponibile = 0 where IdProdotto = @Id";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
