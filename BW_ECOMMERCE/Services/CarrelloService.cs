@@ -1,8 +1,6 @@
 ﻿using BW_ECOMMERCE.Models;
-using Humanizer;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 
 namespace BW_ECOMMERCE.Services
 {
@@ -64,7 +62,7 @@ namespace BW_ECOMMERCE.Services
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
-                    cmd.Parameters.AddWithValue("@IdUtenteFK", 30);
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", 1);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -111,7 +109,7 @@ namespace BW_ECOMMERCE.Services
                                 NomeProdotto = reader.GetString(1),
                                 Prezzo = reader.GetDecimal(2),
                                 Quatita = reader.GetInt32(3),
-                                
+
                             };
                         }
                     }
