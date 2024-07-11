@@ -1,9 +1,9 @@
-using BW_ECOMMERCE.Models;
-using BW_ECOMMERCE.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using BW_ECOMMERCE.Models;
+using BW_ECOMMERCE.Services;
 
 namespace BW_ECOMMERCE.Controllers
 {
@@ -74,16 +74,28 @@ namespace BW_ECOMMERCE.Controllers
                 return NotFound();
             }
             return View(prodotto);
-            
-
-        } 
+        }
 
         [HttpPost]
-        public IActionResult Modifica(Prodotto prodotto)
+        public IActionResult Modifica(Prodotto prodotto, IFormFile file)
         {
-           
-            _prodottoService.UpdateProdotto(prodotto);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (file != null && file.Length > 0)
+                {
+                    var base64String = _fileService.ConvertToBase64(file);
+                    prodotto.ImgProdotto = base64String;
+                }
+
+                _prodottoService.UpdateProdotto(prodotto);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Errore durante la modifica del prodotto: {ex.Message}");
+                ModelState.AddModelError("", "Si è verificato un errore durante la modifica del prodotto.");
+                return View(prodotto);
+            }
         }
 
         [HttpPost]
