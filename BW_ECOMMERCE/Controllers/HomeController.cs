@@ -126,6 +126,7 @@ namespace BW_ECOMMERCE.Controllers
             _carrelloService.InsertCarrello(carrello);
 
             TempData["Success"] = "Prodotto aggiunto al carrello con successo";
+            //return Json(new { success = true, message = "Prodotto aggiunto al carrello con successo" });
             return RedirectToAction("Index");
         }
 
@@ -146,8 +147,9 @@ namespace BW_ECOMMERCE.Controllers
 
         [HttpPost]
 
-        public IActionResult CompraCarrello(int[] ids)
+        public IActionResult CompraCarrello(int[] ids)//, IFormCollection form)
         {
+            //string[] _ids = form["ids"];
             foreach (var id in ids)
             {
                 _carrelloService.CompraCarrello(id);
