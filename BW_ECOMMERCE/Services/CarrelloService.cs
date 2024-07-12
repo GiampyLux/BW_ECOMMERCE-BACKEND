@@ -57,12 +57,12 @@ namespace BW_ECOMMERCE.Services
                 string query = "SELECT c.IdCarrello,p.NomeProdotto , SUM(p.Prezzo * c.Qnty) as Totale, c.Qnty  " +
                     "FROM Carrelli c " +
                     "JOIN Prodotti p ON c.IdProdottoFK = p.IdProdotto " +
-                    "WHERE c.IdUtenteFK = @IdUtenteFK and c.Presente = 1  " +
+                    "WHERE c.IdUtenteFK = @IdUtenteFK and c.Presente = 1  and p.Disponibile = 1" +
                     "GROUP BY c.IdCarrello, p.NomeProdotto, c.Qnty";
 
                 using (SqlCommand cmd = new SqlCommand(query, (SqlConnection)conn))
                 {
-                    cmd.Parameters.AddWithValue("@IdUtenteFK", 10);
+                    cmd.Parameters.AddWithValue("@IdUtenteFK", 30);
                     conn.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
