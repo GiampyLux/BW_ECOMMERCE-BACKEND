@@ -4,63 +4,66 @@
     ViewData["Title"] = "Crea";
 }
 
-<h1>Crea</h1>
+<h1 class="text-center my-4 titolo">Crea Prodotto</h1>
 
-<h4>Prodotto</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Crea" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="NomeProdotto" class="control-label"></label>
-                <input asp-for="NomeProdotto" class="form-control" />
-                <span asp-validation-for="NomeProdotto" class="text-danger"></span>
+<div class="container my-form">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form asp-action="Crea" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <div class="form-group">
+                            <label asp-for="NomeProdotto" class="control-label"></label>
+                            <input asp-for="NomeProdotto" class="form-control" />
+                            <span asp-validation-for="NomeProdotto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Prezzo" class="control-label"></label>
+                            <input asp-for="Prezzo" class="form-control" />
+                            <span asp-validation-for="Prezzo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DescBreve" class="control-label"></label>
+                            <input asp-for="DescBreve" class="form-control" />
+                            <span asp-validation-for="DescBreve" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Descrizione" class="control-label"></label>
+                            <textarea asp-for="Descrizione" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Descrizione" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ImgProdotto" class="control-label"></label>
+                            <input type="file" name="file" class="form-control-file" />
+                            <span asp-validation-for="ImgProdotto" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DataIns" class="control-label"></label>
+                            <input asp-for="DataIns" class="form-control" />
+                            <span asp-validation-for="DataIns" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Quantity" class="control-label"></label>
+                            <input asp-for="Quantity" class="form-control" />
+                            <span asp-validation-for="Quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CodProd" class="control-label"></label>
+                            <input asp-for="CodProd" class="form-control" />
+                            <span asp-validation-for="CodProd" class="text-danger"></span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Create" class="btn btn-primary myBtn" />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Prezzo" class="control-label"></label>
-                <input asp-for="Prezzo" class="form-control" />
-                <span asp-validation-for="Prezzo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DescBreve" class="control-label"></label>
-                <input asp-for="DescBreve" class="form-control" />
-                <span asp-validation-for="DescBreve" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Descrizione" class="control-label"></label>
-                <input asp-for="Descrizione" class="form-control" />
-                <span asp-validation-for="Descrizione" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImgProdotto" class="control-label"></label>
-                <input type="file" name="file" class="form-control" />
-                <span asp-validation-for="ImgProdotto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataIns" class="control-label"></label>
-                <input asp-for="DataIns" class="form-control" />
-                <span asp-validation-for="DataIns" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CodProd" class="control-label"></label>
-                <input asp-for="CodProd" class="form-control" />
-                <span asp-validation-for="CodProd" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="text-center mt-4">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {
@@ -68,3 +71,127 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+  
+    :root {
+        --primary-color: #4CAF50; 
+        --primary-hover-color: #45A049; 
+        --secondary-color: #f8f9fa; 
+        --secondary-hover-color: #e2e6ea;
+        --bg-color: #ffffff; 
+        --border-color: #ced4da; 
+        --focus-border-color: #4CAF50; 
+        --focus-shadow-color: rgba(76, 175, 80, 0.25); 
+        --text-color: #333; 
+        --danger-color: #dc3545; 
+        --card-shadow-color: rgba(76, 175, 80, 0.15); 
+        --form-shadow-color: rgba(76, 175, 80, 0.25); 
+    }
+
+    .titolo {
+        font-size: 2rem;
+        margin-bottom:20%;
+    }
+    .my-form {
+        margin-top: 4rem;
+        background-color: var(--bg-color);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 12px var(--form-shadow-color);
+    }
+
+    .card {
+        border: none;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .card-body {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-control, .form-control-file {
+        border-radius: 0.25rem;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+    }
+
+        .form-control:focus {
+            border-color: var(--focus-border-color);
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem var(--focus-shadow-color);
+        }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+    }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover-color);
+            border-color: var(--primary-hover-color);
+        }
+
+    .btn-secondary {
+        background-color: var(--secondary-color);
+        border-color: var(--border-color);
+        color: var(--text-color);
+    }
+
+        .btn-secondary:hover {
+            background-color: red;
+            border-color: var(--border-color);
+        }
+
+    .myBtn {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        color: var(--text-color);
+    }
+
+    label {
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .text-danger {
+        color: var(--danger-color);
+    }
+
+    .container {
+        background-color: var(--bg-color);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 4px 8px var(--card-shadow-color);
+    }
+
+    .card {
+        border-radius: 1rem;
+        box-shadow: 0 4px 8px var(--card-shadow-color);
+    }
+
+    .btn-primary, .btn-secondary {
+        border-radius: 0.25rem;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+        .btn-primary:hover, .btn-secondary:hover {
+            box-shadow: 0 4px 12px var(--form-shadow-color);
+        }
+
+    .form-control {
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+</style>
