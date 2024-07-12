@@ -2,15 +2,17 @@
     background-image: url(https://media.self.com/photos/580a7c80567317aa3dc0d7d2/4:3/w_1920,c_limit/registered-dietitians-routine.jpg);
     background-size: cover;
     background-position: center;
-    margin-top:4em;
+    margin-top: 4em;
 }
 
 .myGreen {
     color: #81C408;
 }
+
 .myBgGreen {
     background-color: #81C408;
 }
+
 .myOrange {
     color: #FFB524;
 }
@@ -26,9 +28,11 @@
 .myBgOrange {
     background-color: #FFB524;
 }
+
 .myBgGray {
     background-color: #F4F6F8;
 }
+
 .myBg {
     background-color: rgb(255, 255, 255, .9);
     padding: 2em;
@@ -55,11 +59,11 @@
     text-decoration: none;
 }
 
-.myBtnDetail:hover {
-    background-color: #CB911C;
-    color: white;
-    transition: 350ms;
-}
+    .myBtnDetail:hover {
+        background-color: #CB911C;
+        color: white;
+        transition: 350ms;
+    }
 
 .myBtnDelete {
     background-color: #ED6A5A;
@@ -70,11 +74,11 @@
     text-decoration: none;
 }
 
-.myBtnDelete:hover {
-    background-color: #A2483C;
-    color: white;
-    transition: 350ms;
-}
+    .myBtnDelete:hover {
+        background-color: #A2483C;
+        color: white;
+        transition: 350ms;
+    }
 
 .qnt {
     border-radius: 2em;
@@ -84,11 +88,11 @@
     transition: 350ms;
 }
 
-.qnt:focus {
-    border-color: #81C408;
-    outline: none;
-    transition:350ms;
-}
+    .qnt:focus {
+        border-color: #81C408;
+        outline: none;
+        transition: 350ms;
+    }
 
 .myBtnCart {
     border-radius: 2em;
@@ -98,11 +102,11 @@
     border: 1px solid #FFB524;
 }
 
-.myBtnCart:hover {
-    background-color: #FFB524;
-    color: white;
-    transition: 350ms;
-}
+    .myBtnCart:hover {
+        background-color: #FFB524;
+        color: white;
+        transition: 350ms;
+    }
 
 .myBtnPur {
     border-radius: 2em;
@@ -113,17 +117,17 @@
     transition: 350ms;
 }
 
-.myBtnPur:hover {
-    background-color: #81C408;
-    padding: 0.5em 1em;
-    color: white;
-    transition: 350ms;
-}
+    .myBtnPur:hover {
+        background-color: #81C408;
+        padding: 0.5em 1em;
+        color: white;
+        transition: 350ms;
+    }
 
 
 .myBtn:focus {
     background-color: #FFB524;
-    color:white;
+    color: white;
     transition: 350ms;
 }
 
@@ -138,11 +142,11 @@
     transition: 350ms;
 }
 
-.myCard:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    transition: 350ms;
-    border: 2px solid #81C408;
-}
+    .myCard:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        transition: 350ms;
+        border: 2px solid #81C408;
+    }
 
 .fab {
     width: 50px;
@@ -162,52 +166,22 @@
     transition: transform 350ms ease-in-out;
 }
 
-.fab:hover {
-    background: #81C408;
-    cursor: pointer;
-    -ms-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
+    .fab:hover {
+        background: #81C408;
+        cursor: pointer;
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
 
 #frutta {
     margin-top: 5em;
-    overflow: hidden;
 }
 
-    #frutta img {
-        position: relative;
-        right: -100%;
-        opacity: 0;
-        transition: right 3s ease-out, opacity 3s ease-out;
-    }
-
-    #frutta.scrolled img {
-        right: 0;
-        opacity:1;
-    }
-
-#verdura {
-    margin-top: 5em;
-    overflow: hidden;
-}
-
-#verdura img {
-    position: relative;
-    left: -100%;
-    opacity: 0;
-    transition: left 3s ease-out, opacity 3s ease-out;
-}
-
-#verdura.scrolled img {
-    left: 0;
-    opacity: 1;
-}
-
-.names{
+.names {
     position: relative;
     animation: run 15s linear infinite;
-    }
+}
 
 @keyframes run {
     0% {
@@ -233,22 +207,31 @@
     width: 220px;
     max-width: 100%;
     border: 2px solid #FFB524;
-    border-radius:1.2em;
+    border-radius: 1.2em;
     transition: 350ms;
 }
 
-.myCardTwo img{
-    border-radius: 50%;
-}
+    .myCardTwo img {
+        border-radius: 50%;
+    }
 
-.myCardTwo:hover {
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    transition: 350ms;
-    border: 2px solid #81C408;
-    transform: scale(1.2);
-}
+    .myCardTwo:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        transition: 350ms;
+        border: 2px solid #81C408;
+        transform: scale(1.2);
+    }
 
 .names:hover .myCardTwo:not(:hover) {
     transform: scale(0.80);
     transition: 350ms;
+}
+
+
+.imgRad{
+    border-radius: 2em;
+}
+
+#row{
+    margin-top:10em;
 }

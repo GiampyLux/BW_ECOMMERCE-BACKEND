@@ -4,77 +4,37 @@
     ViewData["Title"] = "Dettagli Prodotto";
 }
 
-<h1>Dettagli Prodotto</h1>
+<link rel="stylesheet" href="~/css/dettagli.css" />
 
-<div>
-    <h4>Prodotto</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.IdProdotto)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.IdProdotto)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.NomeProdotto)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.NomeProdotto)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Prezzo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Prezzo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DescBreve)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DescBreve)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Descrizione)
-        </dd>
-        <dt class="col-sm-2">
-            Immagine
-        </dt>
-        <dd class="col-sm-10">
-            @if (!string.IsNullOrEmpty(Model.ImgProdotto))
-            {
-                <img src="data:image;base64,@Model.ImgProdotto" class="img-fluid rounded" style="max-width: 400px; max-height: 400px;" />
-            }
-            else
-            {
-                <span>Nessuna immagine disponibile</span>
-            }
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DataIns)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DataIns)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CodProd)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CodProd)
-        </dd>
-    </dl>
-</div>
-
-<div>
-    @Html.ActionLink("Modifica", "Modifica", new { id = Model.IdProdotto }) |
-    @Html.ActionLink("Torna alla lista", "Index")
+<div class="container mt-5">
+    <div class="row justify-content-center" id="row">
+        <div class="col-8">
+            <hr />          
+            <div class="row align-items-center">
+                <div class="col-6">
+                    @if (!string.IsNullOrEmpty(Model.ImgProdotto))
+                    {
+                        <img src="data:image;base64,@Model.ImgProdotto" class="img-fluid imgRad" style="max-width: 400px; max-height: 400px;" />
+                    }
+                    else
+                    {
+                        <span>Nessuna immagine disponibile</span>
+                    }
+                </div>
+                <div class="col-6">
+                    <small class="myOrange">COD. PRODOTTO: @Html.DisplayFor(model => model.CodProd)</small>
+                    <h1 class="fw-bold display-3 myOlive">@Html.DisplayFor(model => model.NomeProdotto)</h1>
+                    <h4 class="fw-bold myOlive">@Html.DisplayFor(model => model.DescBreve)</h4>
+                    <p class="myGray mt-4">@Html.DisplayFor(model => model.Descrizione)</p>
+                    <h2 class="myOrange">€ @Html.DisplayFor(model => model.Prezzo)</h2>
+                    <p class="myGray">DATA INS. : @Html.DisplayFor(model => model.DataIns)</p>
+                    <small class="myGray">QUANTITÀ DISP. IN MAGAZZINO: @Html.DisplayFor(model => model.Quantity) PZ.</small>
+                </div>
+            </div>
+    <div>
+                <button class="myBtnDetail">@Html.ActionLink("Modifica", "Modifica", new { id = Model.IdProdotto }, new { @class = "text-decoration-none text-white" })</button>
+                <button class="myBtnPur border-0">@Html.ActionLink("Torna Alla Lista", "Index", null, new { @class = "text-decoration-none text-white" })</button>
+            </div>
+        </div>
+    </div>
 </div>
