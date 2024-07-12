@@ -22,3 +22,8 @@ window.addEventListener('scroll', function () {
         verduraSection.classList.remove('scrolled');
     }
 });
+
+document.querySelector('.scrollTop').addEventListener('click', function (e) {
+    e.preventDefault(); // Prevenire il comportamento predefinito del link
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
