@@ -52,6 +52,7 @@
     border: none;
     padding: 0.5em 1em;
     color: white;
+    transition: 350ms;
     text-decoration: none;
 }
 
@@ -115,6 +116,21 @@
 
 .myBtnPur:hover {
     background-color: #81C408;
+    padding: 0.5em 1em;
+    color: white;
+    transition: 350ms;
+}
+
+.myBtnAo{
+    border-radius: 2em;
+    border: none;
+    padding: 0.5em 1em;
+    color: #81C408;
+    transition: 350ms;
+}
+
+.myBtnAo:hover{
+    background-color: #FFB524;
     padding: 0.5em 1em;
     color: white;
     transition: 350ms;
@@ -252,3 +268,4 @@
     transform: scale(0.80);
     transition: 350ms;
 }
+

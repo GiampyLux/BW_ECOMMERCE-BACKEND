@@ -30,10 +30,10 @@
                     <p class="myGray">DATA INS. : @Html.DisplayFor(model => model.DataIns)</p>
                     <small class="myGray">QUANTITÀ DISP. IN MAGAZZINO: @Html.DisplayFor(model => model.Quantity) PZ.</small>
                 </div>
-            </div>
-    <div>
+                </div>
+                <div>
                 <button class="myBtnDetail">@Html.ActionLink("Modifica", "Modifica", new { id = Model.IdProdotto }, new { @class = "text-decoration-none text-white" })</button>
-                <button class="myBtnPur border-0">@Html.ActionLink("Torna Alla Lista", "Index", null, new { @class = "text-decoration-none text-white" })</button>
+                <button class="myBtnPur border-0">@Html.ActionLink("Torna Alla Lista", "Index", null, null, new { @class = "text-decoration-none text-white" })</button>
             </div>
         </div>
     </div>
