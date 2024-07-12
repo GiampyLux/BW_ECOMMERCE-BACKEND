@@ -269,3 +269,11 @@
     transition: 350ms;
 }
 
+
+.fixed-img {
+    width: 100%;
+    height: 200px; /* Altezza fissa, puoi cambiare questo valore a seconda delle tue necessità */
+    object-fit: cover; /* Mantiene le proporzioni e ritaglia l'immagine se necessario */
+}
+
+

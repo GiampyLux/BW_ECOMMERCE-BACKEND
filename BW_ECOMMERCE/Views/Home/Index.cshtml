@@ -125,11 +125,11 @@
                             
                                 @if (!string.IsNullOrEmpty(product.ImgProdotto))
                                 {
-                                    <img src="data:image;base64,@product.ImgProdotto" class="img-fluid rounded-top " alt="Immagine Prodotto">
+                                <img src="data:image;base64,@product.ImgProdotto" class="img-fluid rounded-top fixed-img" alt="Immagine Prodotto">
                                 }
                                 else
                                 {
-                                    <img src="/img/placeholder.jpg" class="img-fluid rounded-top " alt="Immagine non disponibile">
+                                <img src="/img/placeholder.jpg" class="img-fluid rounded-top fixed-img" alt="Immagine non disponibile">
                                 }
                             <div class="fab">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
