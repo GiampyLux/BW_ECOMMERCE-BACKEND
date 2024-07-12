@@ -112,7 +112,7 @@ namespace BW_ECOMMERCE.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity)
         {
-            int userId = 30; // Replace with actual user ID from your user management logic
+            int userId = 1; // Replace with actual user ID from your user management logic
 
             Carrello carrello = new Carrello
             {
